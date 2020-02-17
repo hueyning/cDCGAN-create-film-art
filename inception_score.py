@@ -3,12 +3,12 @@ from torch import nn
 from torch.autograd import Variable
 from torch.nn import functional as F
 import torch.utils.data
-
 from torchvision.models.inception import inception_v3
-
 import numpy as np
 from scipy.stats import entropy
 
+
+# inception score code derived from https://github.com/sbarratt/inception-score-pytorch/blob/master/inception_score.py
 def inception_score(imgs, cuda=False, batch_size=32, resize=True, splits=1):
     """
     Computes the inception score of the generated images imgs
