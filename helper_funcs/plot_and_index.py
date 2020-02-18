@@ -142,16 +142,18 @@ def plot_progression(model, classes, class_name, checkpoint_dir, epoch_list, no_
         plt.imshow(np.transpose(vutils.make_grid(images, nrow = no_of_images, normalize = True), (1,2,0)))
 
 
-def plot_batch(dataset, class_name, batch_size = 25, nrow = 5, device = 'cpu'):    
+def plot_batch(dataset, class_name = None, batch_size = 25, nrow = 5, device = 'cpu'):    
     '''
-    Plot images from a set based on a given class name
+    If a class_name is given, plot images from a dataset based on a given class name.
+    Otherwise, just plot a random sample of images from the dataset.
     '''
-    class_index = dataset.classes.index(class_name)
-    target_idx_dct = get_target_index(dataset)
-    dataloader = torch.utils.data.DataLoader(
-                                    dataset, batch_size = batch_size, 
-                                    sampler = SubsetRandomSampler(
-                                    target_idx_dct[dataset.classes[class_index]]['indices']))
+    if class_name:
+        class_index = dataset.classes.index(class_name)
+        target_idx_dct = get_target_index(dataset)
+        sampler = SubsetRandomSampler(target_idx_dct[dataset.classes[class_index]]['indices'])
+    else: sampler = None
+
+    dataloader = torch.utils.data.DataLoader(dataset, batch_size = batch_size, sampler = sampler)
     batch = next(iter(dataloader))
     plt.figure(figsize=(20,12))
     plt.axis("off")

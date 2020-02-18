@@ -1,5 +1,6 @@
 # function for generating fake images using a trained GAN model
 
+from modules import *
 import uuid
 
 def _checkDirectory(dirName):
