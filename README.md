@@ -1,12 +1,12 @@
 # Conditional DCGAN (cDCGAN) for Generating Artwork Conditioned on Film Genres
 
-This repo contains a cDCGAN model that I trained to generated artwork based on different film genres, e.g. noir, horror, cyberpunk, western, cartoon. The cDCGAN model was built based on the DCGAN model tutorial written in Pytorch (https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html) and the conditionals (the film genres) were embedded as a final linear layer of the cDCGAN network.
+This repo contains a cDCGAN model that I trained to generated artwork based on different film genres, e.g. noir, horror, cyberpunk, western, cartoon. The cDCGAN model was modified based on the official Pytorch tutorial (https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html) and the conditionals (the film genres) were embedded as a final linear layer to the cDCGAN network.
 
 I traained the model on both the CIFAR10 dataset as well as my own novel dataset of digital art collected from https://www.artstation.com/.
 
-The main results of the model are displayed in `EvaluateGan-ArtDataset.ipynb`.
+The results of the model can be seen in `EvaluateGan-ArtDataset.ipynb`.
 
-The structure of this repo is shown as follows:
+### Repository Structure
 
 ```
 root
@@ -28,3 +28,8 @@ root
 
 
 This is still a W.I.P. but should be completed soon, at which point I will upload the final paper on this repo.
+
+### References
+- The cDCGAN model was modifed from: https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html
+- The inception score was modified from: https://github.com/sbarratt/inception-score-pytorch/blob/master/inception_score.py
+- The FID was modified from: https://github.com/mseitzer/pytorch-fid/blob/master/fid_score.py
