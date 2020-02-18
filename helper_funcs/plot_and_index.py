@@ -2,6 +2,7 @@
 
 # import necessary libraries
 from modules import *
+from torch.utils.data import SubsetRandomSampler
 
 def plot_images(dataloader, classes, device, image_number = 8, disp_labels = True, model = None):
     
@@ -139,5 +140,22 @@ def plot_progression(model, classes, class_name, checkpoint_dir, epoch_list, no_
         plt.axis('off')
         plt.title(f'Fake {class_name} (epoch = {epoch})', size=20)
         plt.imshow(np.transpose(vutils.make_grid(images, nrow = no_of_images, normalize = True), (1,2,0)))
+
+
+def plot_batch(dataset, class_name, batch_size = 25, nrow = 5, device = 'cpu'):    
+    '''
+    Plot images from a set based on a given class name
+    '''
+    class_index = dataset.classes.index(class_name)
+    target_idx_dct = get_target_index(dataset)
+    dataloader = torch.utils.data.DataLoader(
+                                    dataset, batch_size = batch_size, 
+                                    sampler = SubsetRandomSampler(
+                                    target_idx_dct[dataset.classes[class_index]]['indices']))
+    batch = next(iter(dataloader))
+    plt.figure(figsize=(20,12))
+    plt.axis("off")
+    plt.imshow(np.transpose(vutils.make_grid(batch[0].to(device)[:100],
+                padding=2, nrow=nrow, normalize=True).cpu(),(1,2,0)))
     
 
