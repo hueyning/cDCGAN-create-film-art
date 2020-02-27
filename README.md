@@ -2,7 +2,7 @@
 
 This repo contains a cDCGAN model that I trained to generate artwork based on different film genres, e.g. cartoon, cyberpunk, horror, noir, western. The cDCGAN model was modified based on the official Pytorch tutorial (https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html) and the conditionals (the film genres) were embedded as a final linear layer to the cDCGAN network.
 
-I trained the model on both the CIFAR10 dataset as well as my own novel dataset of digital art collected from https://www.artstation.com/.
+I trained the model on both the CIFAR10 dataset as well as my own novel dataset of digital art scraped from https://www.artstation.com/ using the web-scraper located in https://github.com/hueyning/art-station-scraper.
 
 The results of the model can be seen in `EvaluateGan-ArtDataset.ipynb`.
 
